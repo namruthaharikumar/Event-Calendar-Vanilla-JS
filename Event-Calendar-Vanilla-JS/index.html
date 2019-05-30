@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calender Project</title>
+</head>
+<script type="application/javascript" src="calender.js"></script>
+<link type="text/css" rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="calenderstyling.css">
+<script type="text/css" rel="calender.css"></script>
+<body>
+<h1>
+    This is an event Calender
+</h1>
+<select id="month" class="btn btn-primary dropdown-toggle" ></select>
+<span><select id="year" class="btn btn-primary dropdown-toggle"></select></span>
+<div id="table-div"></div>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+       <span><span class="close">&times;</span>
+        <b>Event Creator</b>
+           </span>
+        <div>
+                 <div class='event-name'>
+                <div class='col-25'>Event Name</div>
+                <input class="col-75">
+            </div>
+            <div>
+                <div class="col-25">From</div>
+                <div class="col-75">
+                    <input type="number" min= "1" max = "12">
+                    <select role="switch" aria-checked="false">
+                        <option>AM</option>
+                        <option selected>PM</option>
+                    </select>
+                </div>
+            </div>
+            <div >
+                <div class="col-25">TO</div>
+                <div class="col-75">
+                    <input type="number" min= "1" max = "12">
+                    <select role="switch" aria-checked="false">
+                        <option>AM</option>
+                        <option selected>PM</option>
+                    </select>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+<script>
+    calender();
+</script>
+</body>
+</html>
