@@ -49,9 +49,8 @@ span {
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 27%;
 }
 
 /* The Close Button */
@@ -69,12 +68,31 @@ span {
     cursor: pointer;
 }
 .col-75 {
-    width: 60%;
+    width: 64%;
     float: right;
 }
 .col-25 {
-    width : 25%;
+    width : 27%;
     float: left;
     margin-right: 30px;
 }
-
+.button-grp-modal {
+    text-align :center;
+    margin-right: 10px;
+}
+input-class {
+    margin: 0px;
+    width: 40%;
+}
+.fieldset {
+    padding: 20px;
+}
+.btn-fields {
+    text-align: center;
+}
+.header {
+    background-color: rebeccapurple ;
+    height: 50px;
+    color: white;
+    text-align: center;
+}

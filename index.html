@@ -19,35 +19,39 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-       <span><span class="close">&times;</span>
-        <b>Event Creator</b>
-           </span>
-        <div>
-                 <div class='event-name'>
+       <div  class="header"><span class="close">&times;</span>
+        <b style="font-size: 31px">Event Creator</b>
+           </div>
+             <div class="fieldset">
                 <div class='col-25'>Event Name</div>
-                <input class="col-75">
+                 <div class="col-75">
+                     <input class="input-class event-name">
+                 </div>
+
             </div>
-            <div>
+            <div class="fieldset">
                 <div class="col-25">From</div>
                 <div class="col-75">
-                    <input type="number" min= "1" max = "12">
-                    <select role="switch" aria-checked="false">
+                    <input  type="number" class="from-val" min= "1" max = "12">
+                    <select id="from" role="switch" aria-checked="false">
                         <option>AM</option>
                         <option selected>PM</option>
                     </select>
                 </div>
             </div>
-            <div >
+            <div class="fieldset">
                 <div class="col-25">TO</div>
                 <div class="col-75">
-                    <input type="number" min= "1" max = "12">
-                    <select role="switch" aria-checked="false">
+                    <input type="number" class="to-val" min= "1" max = "12">
+                    <select id="to" role="switch" aria-checked="false">
                         <option>AM</option>
                         <option selected>PM</option>
                     </select>
                 </div>
             </div>
-
+            <div class=" fieldset btn-fields">
+                <button class="button-grp-modal btn-danger">Cancel</button>
+                <button class="button-grp-modal btn-primary save-btn">Save</button>
             </div>
     </div>
 </div>

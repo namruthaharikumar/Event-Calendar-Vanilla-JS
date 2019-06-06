@@ -1,13 +1,14 @@
 function calender() {
+    var that = this;
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var event = {
         1 : 'Event 1',
         2 : 'Event 2',
         30 : 'Event 30'
     };
-    var calenderData = [];
+    var calenderData = {};
     var weekdays = ["Sun","Mon", "Tue", "Wed", "Thur", "Fri","Sat"];
-    var monthCombo = document.getElementById('month')
+     that.monthCombo = document.getElementById('month')
     var yearCombo = document.getElementById('year');
     var currentYear = new Date().getFullYear();
     var startDay,endDay,tableRow, tableData;
@@ -35,17 +36,19 @@ function calender() {
     table.className = 'table';
     document.getElementById('table-div').appendChild(table);
     monthCombo.addEventListener('change', function () {
-        console.log(monthCombo.value);
         calculateDays();
     });
     yearCombo.addEventListener('change', function () {
-        console.log(yearCombo.value);
         calculateDays();
     });
     var today = new Date();
     document.getElementById('month').options.selectedIndex = today.getMonth();
     calculateDays();
     function calculateDays() {
+        var storedData = JSON.parse(localStorage.getItem('year-'+currentYear+''+'month-'+that.monthCombo.options.selectedIndex));
+        if(storedData) {
+            calenderData = storedData;
+        }
         document.getElementById('cTable').innerHTML = '';
         var th = document.createElement('tr');
         th.id = 'tr';
@@ -60,7 +63,6 @@ function calender() {
         var monthDays = new Date(parseInt(yearCombo.value), parseInt(monthCombo.value) + 1, 0).getDate();
         startDay = new Date(parseInt(yearCombo.value), parseInt(monthCombo.value), 1).getDay();
         endDay = new Date(parseInt(yearCombo.value), parseInt(monthCombo.value) + 1, 0).getDay();
-        console.log("Number of days in this month", monthDays, startDay, endDay);
         if (startDay !== 0) {
             for (var l = 0; l < startDay; l++) {
                 calenderArray.push('b');
@@ -74,7 +76,6 @@ function calender() {
                 calenderArray.push('b');
             }
         }
-        console.log(calenderArray);
         for (var n = 0; n < calenderArray.length; n++) {
             if (n % 7 === 0) {
                 tableRow = document.createElement('tr');
@@ -83,7 +84,7 @@ function calender() {
                 document.getElementById('cTable').appendChild(tableRow);
             }
             tableData = document.createElement('td');
-            tableData.id = 'td-' + n;
+            tableData.id = 'td-' + calenderArray[n];
             if (calenderArray[n] == 'b') {
                 tableData.innerHTML = '';
             }
@@ -92,25 +93,51 @@ function calender() {
                     tableData.classList.add('today');
                 }
                 tableData.innerHTML = calenderArray[n];
-                if(event[calenderArray[n]]) {
+                if(calenderData[calenderArray[n]]) {
                     var addEventDiv = document.createElement('div');
-                    addEventDiv.innerHTML = event[calenderArray[n]];
+                    addEventDiv.innerHTML = calenderData[calenderArray[n]];
                     tableData.appendChild(addEventDiv);
                 }
 
             }
             tableData.addEventListener('click', function () {
-                console.log(tableData.id, 'clicked');
                 var span = document.getElementsByClassName("close")[0];
                 span.onclick = function() {
                     modal.myModal.style.display = 'none';
                 }
-                var modal = document.getElementsByClassName('modal');
-                modal.myModal.style.display = 'block'
+                that.modal = document.getElementsByClassName('modal');
+                that.modal.myModal.style.display = 'block';
+                that.selectedDate = parseInt(this.id.replace('td-', ''));
             });
             tableRow.appendChild(tableData);
         }
+
     }
+    var saveBtn = document.getElementsByClassName('save-btn')[0];
+    saveBtn.addEventListener('click', function () {
+        var eventName = document.getElementsByClassName('event-name')[0];
+        var eventNameVal = eventName.value;
+        var from = document.getElementsByClassName('from-val')[0];
+        var to = document.getElementsByClassName('to-val')[0];
+        var fromMeridiem = document.getElementById('from').value;
+        var toMeridiem = document.getElementById('to').value;
+        var fromVal = from.value;
+        var toVal = to.value;
+        var content =  eventNameVal + ' ' + 'From'+ ' '+ fromVal+ ' ' + fromMeridiem +' '+ 'TO' + ''+ toVal +' ' +  toMeridiem +'<br>';
+      /*  if( !calenderData[selectedDate]) {
+            calenderData[selectedDate] = {};
+            calenderData[selectedDate] = [];
+        }
+        calenderData[selectedDate][calenderData[selectedDate].length] = content;*/
+        calenderData[that.selectedDate] = calenderData[that.selectedDate] ? calenderData[that.selectedDate] + content : content;
+        window.localStorage.setItem('year-'+currentYear+''+'month-'+that.monthCombo.options.selectedIndex, JSON.stringify(calenderData));
+        from.value = '';
+        to.value = ''
+        eventName.value = '';
+        that.modal.myModal.style.display = 'none';
+        calculateDays();
+
+    });
   /*  function  createEventModal() {
 
     }*/
