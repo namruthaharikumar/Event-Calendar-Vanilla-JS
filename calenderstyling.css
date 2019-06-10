@@ -16,6 +16,7 @@ span {
 .table {
     width : 70%;
     margin-bottom: 1rem;
+    background-color: ghostwhite;
 }
 #table-div {
     padding-top: 20px;

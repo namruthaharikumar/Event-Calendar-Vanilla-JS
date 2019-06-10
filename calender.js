@@ -102,10 +102,11 @@ function calender() {
                 tableData.innerHTML = '';
             }
             else {
+                tableData.innerHTML = calenderArray[n];
                 if(calenderArray[n]===today.getDate() && parseInt(yearCombo.value) === today.getFullYear() && parseInt(monthCombo.value)=== today.getMonth()) {
                     tableData.classList.add('today');
+                    tableData.innerHTML += '<br >' + '<div style = "padding-top: 30%">' + 'Today !!!' + '</div>';
                 }
-                tableData.innerHTML = calenderArray[n];
                 if(calenderData[calenderArray[n]]) {
                     calenderData = storedData;
                     for (var p=0; p < calenderData[calenderArray[n]].length ; p++) {
