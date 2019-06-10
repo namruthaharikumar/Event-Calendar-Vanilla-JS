@@ -55,8 +55,9 @@ function calender() {
     };
     function calculateDays() {
         var that = this;
-
-        var storedData = JSON.parse(localStorage.getItem('year-'+that.yearCombo.selectedOptions[0].value+''+'month-'+that.monthCombo.options.selectedIndex));
+       /* var monthAndYear = document.getElementById('month-and-year');
+        monthAndYear.innerHTML = month[that.monthCombo.options.selectedIndex] + ', ' + that.yearCombo.selectedOptions[0].value;
+       */ var storedData = JSON.parse(localStorage.getItem('year-'+that.yearCombo.selectedOptions[0].value+''+'month-'+that.monthCombo.options.selectedIndex));
         if(storedData) {
             calenderData = storedData;
         }
