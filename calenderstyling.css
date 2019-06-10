@@ -96,3 +96,15 @@ input-class {
     color: white;
     text-align: center;
 }
+.table td, .table th {
+    position : relative;
+    text-overflow: ellipsis;
+    width: 70px;
+    height: 30px;
+}
+.card {
+    margin-top: 3px;
+}
+.bg-card {
+    background-color: #BA55D3;
+}
