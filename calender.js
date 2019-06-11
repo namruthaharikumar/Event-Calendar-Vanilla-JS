@@ -112,10 +112,12 @@ function calender() {
                     calenderData = storedData;
                     for (var p=0; p < calenderData[calenderArray[n]].length ; p++) {
                         var addEventDiv = document.createElement('div');
+                        addEventDiv.id = 'event-on ' + calenderArray[n];
                         addEventDiv.classList.add('bg-card' ,'card');
                         addEventDiv.innerHTML += calenderData[calenderArray[n]][p];
                         tableData.appendChild(addEventDiv);
                     }
+
 
                 }
 
@@ -133,6 +135,13 @@ function calender() {
         }
 
     }
+    // TO set listener for each event card
+    var allEvents  = document.querySelectorAll('.bg-card');
+    allEvents.forEach(function (eventCard , index) {
+        eventCard.addEventListener('click' , function () {
+            console.log(eventCard, index);
+        })
+    })
     var saveBtn = document.getElementsByClassName('save-btn')[0];
     saveBtn.addEventListener('click', function () {
         var eventNameVal = that.$eventName.value;
@@ -155,8 +164,8 @@ function calender() {
     closeBtn.addEventListener('click', function () {
         clearModal.call(that);
     });
+function eventHandLing(addEventDIv) {
+    console.log(addEventDIv);
+}
 
-  /*  function  createEventModal() {
-
-    }*/
 };
